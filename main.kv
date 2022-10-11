@@ -1,0 +1,246 @@
+<MainWid>
+    canvas:
+        Color:
+            rgb: 1,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<StartWid>
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgb: 0.6,0.2,0.8
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        size_hint_y: 0.7
+        Label:
+            id: bienvenida
+            text: "Bienvenido pulsa el boton para comenzar"
+            font_size: 17
+    Button:
+        size_hint_y: 0.1
+        on_press: root.create_database()
+        background_color: 0,0,0,0
+        pos_hint: {'center_x': 0.5}
+        Image:
+            source: 'Aplicacion/inicio2.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    BoxLayout:
+        size_hint_y: 0.2
+
+<DataWid>
+    data: ''
+    data_id: ''
+    canvas:
+        Color:
+            rgb: 0.2,0.2,0.2
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        size_hint_x: 0.9
+        size_font: self.width*0.4
+        text: root.data
+    Button:
+        size_hint_x: 0.4
+        background_color: 0,0,0,0
+        on_press: root.update_data(root.data_id)
+        pos_hint: {'center_x': 0.5}
+        Image:
+            source: 'Aplicacion/editar.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+<NewDataButton>
+    background_color: 0,0,0,0
+    on_press: root.create_new_objeto()
+    pos_hint: {'center_x': 0.5}
+    Image:
+        source: 'Aplicacion/agregar.png'
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
+
+<DataBaseWid>
+    canvas:
+        Color:
+            rgb: 0.6,0.2,0.8
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    ScrollView
+        size: self.size
+        GridLayout:
+            id: container
+            padding: [10,10,10,10]
+            spacing: 5
+            size_hint_y: None
+            cols: 1
+            row_default_height: root.height*0.2
+            height: self.minimum_height
+
+<LeftLabel@Label>:
+    text_size: self.size
+    halign: 'left'
+
+<MessagePopup>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: message
+            size_hint: 1,0.8
+            text: ''
+        Button:
+            size_hint: 1,0.2
+            on_press: root.dismiss()
+            background_color: 0,0,0,0
+            pos_hint: {'center_x': 0.5}
+            Image:
+                source: 'Aplicacion/aceptar.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+<InsertDataWid>
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgb: 0.6,0.2,0.8
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    LeftLabel:
+        text: "ID:"
+    TextInput:
+        id: id
+        multilne: False
+        hint_text: 'Ingrese el identificador'
+    LeftLabel:
+        text: "Nombre:"
+    TextInput:
+        id: nombre
+        multilne: False
+        hint_text: 'Ingrese el nombre del objeto'
+    LeftLabel:
+        text: "Forma:"
+    TextInput:
+        id: forma
+        multilne: False
+        hint_text: 'Ingrese la forma'
+    LeftLabel:
+        text: "tamano:"
+    TextInput:
+        id: tamano
+        multilne: False
+        hint_text: 'Ingrese el tamano'
+    LeftLabel:
+        text: "Color:"
+    TextInput:
+        id: color
+        multilne: False
+        hint_text: 'Ingrese el color'
+    LeftLabel:
+        text: "Entorno:"
+    TextInput:
+        id: entorno
+        multilne: False
+        hint_text: 'Vincule un entorno'
+    BoxLayout:
+        size_hint_y: 5
+    BoxLayout:
+        Button:
+            size_hint_y: 3
+            on_press: root.insert_data()
+            background_color: 0,0,0,0
+            pos_hint: {'center_x': 0.5}
+            Image:
+                source: 'Aplicacion/ok.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+        Button:
+            size_hint_y: 3
+            on_press: root.back_to_dbw()
+            background_color: 0,0,0,0
+            pos_hint: {'center_x': 0.5}
+            Image:
+                source: 'Aplicacion/cancelar.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+<UpdateDataWid>
+    orientation: 'vertical'
+    data_id: ''
+    canvas:
+        Color:
+            rgb: 0.6,0.2,0.8
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    LeftLabel:
+        text: "ID: "+root.data_id
+    LeftLabel:
+        text: "Nombre:"
+    TextInput:
+        id: nombre
+        multilne: False
+        hint_text: 'Ingrese el nombre del objeto'
+    LeftLabel:
+        text: "Forma:"
+    TextInput:
+        id: forma
+        multilne: False
+        hint_text: 'Ingrese la forma'
+    LeftLabel:
+        text: "tamano:"
+    TextInput:
+        id: tamano
+        multilne: False
+        hint_text: 'Ingrese el tamano'
+    LeftLabel:
+        text: "Color:"
+    TextInput:
+        id: color
+        multilne: False
+        hint_text: 'Ingrese el color'
+    LeftLabel:
+        text: "Entorno:"
+    TextInput:
+        id: entorno
+        multilne: False
+        hint_text: 'Vincule un entorno'
+    BoxLayout:
+        size_hint_y: 4
+    BoxLayout:
+        size_hint_y: 4
+        Button:
+            on_press: root.update_data()
+            background_color: 0,0,0,0
+            pos_hint: {'center_x': 0.5}
+            Image:
+                source: 'Aplicacion/guardar.png'
+                width: 70
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+        Button:
+            on_press: root.delete_data()
+            background_color: 0,0,0,0
+            pos_hint: {'center_x': 0.5}
+            Image:
+                source: 'Aplicacion/cancelar.png'
+                width: 70
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+    BoxLayout:
+        size_hint_y: 4
+        Button:
+            size_hint: 0.42, 0.42
+            background_color: 0,0,0,0
+            on_press: root.back_to_dbw()
+            pos_hint: {'center_x': 0.5}
+            Image:
+                source: 'Aplicacion/regresar.png'
+                width: 70
+                center_x: self.parent.center_x
+                size_hint_y: 4.2
